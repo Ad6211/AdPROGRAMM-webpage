@@ -1,0 +1,38 @@
+body {
+    background:#13033a;
+    color:rgb(209, 209, 209);
+    font-family:Arial;
+    text-align:center;
+    padding-top:10px;
+}
+.flex-container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#WebAD h2 {
+    display: inline-block;
+    background: rgba(255,255,255,0.85);
+    color: #123047;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+
+    background: rgba(255,255,255,0.1);
+    box-sizing: border-box;
+}
+a + a { 
+    margin-left: 20px;
+}
