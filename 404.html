@@ -4,25 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erreur 404</title>
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="refresh" content="5; url=/">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body style="align-items: center; justify-content: center; font-family: Arial, sans-serif; text-align: center; padding: 50px;">
     <div class="header">
-        <a href="index.html">Accueil</a>
-        <a href="projects.html">Projets</a>
+        <a href="/">Accueil</a>
+        <a href="/projects.html">Projets</a>
         <a href="#">Contact</a>
     </div>
     <h1>Erreur 404</h1>
     <p>La page que vous recherchez n'existe pas.</p>
     <p>(ou vous avez essayé de fouiller où il fallait pas)</p>
-    <a href="index.html">Retour à l'accueil</a>
-    <p>Redirection vers la page d'accueil dans 5 secondes...</p>
+    <a href="/">Retour à l'accueil</a>
     <img src="https://http.cat/404" alt="Image d'erreur 404" style="display: block; margin: 20px auto; max-width: 100%; height: auto;">
-    <script>
-      const segments = window.location.pathname.split('/').filter(Boolean);
-      const root = segments.length > 1 ? `/${segments[0]}/` : '/';
-      setTimeout(() => window.location.replace(root), 5000);
-    </script>
 </body>
 </html>
