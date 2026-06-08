@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAd</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+    <div class="header">
+    <a href="../../index.html">Accueil</a>
+    <a href="../../projects.html">Projets</a>
+    <a href="#">Contact</a>
+  </div>
+  <h1 style="padding-top: 80px; text-align: center;">WebAD</h1>
+  <p>WebAD est un navigateur web privé et confidentiel, dont le but est de ne pas posséder d'historique de navigation, où les cookies et autres ne sont pas sauvegardés ni supportés.</p>
+  <a href="https://github.com/Ad6211/WebAD/releases/latest/download/WebAD-setup-Windows-x64.exe" download class="flex">
+    <button style="display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; color : #564497; background-color: #080050; border-radius: 15px; text-align: center; justify-content: center; display: flex; align-items: center; font-size: 25px;"><img src="logo-windows.webp" alt="Logo Windows" style="width: 100px; height: auto; margin-right: 20px;">Télécharger WebAD pour<br> Windows</button>
+  </a>
+  <div class="flex" style="text-align:center;">
+    <button id="copyLinuxPrimary" style="display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; color : #564497; background-color: #080050; border-radius: 15px; text-align: center; justify-content: center; display: flex; align-items: center; font-size: 25px;"><img src="logo-linux.png" alt="Logo Linux" style="width: 100px; height: auto; margin-right: 20px;">copier la commande pour linux debian et ubuntu</button>
+    <div style="margin-top:10px;">
+      <input type="hidden" id="linuxCmd" value="curl -fsSL https://raw.githubusercontent.com/Ad6211/WebAD/main/install.sh | bash">
+    </div>
+  </div>
+
+  <script>
+    const copyBtn = document.getElementById('copyLinuxPrimary');
+    const cmdInput = document.getElementById('linuxCmd');
+    const originalBtnHtml = copyBtn.innerHTML;
+
+    async function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); return true; } catch (e) { return false; } finally { document.body.removeChild(ta); }
+    }
+
+    copyBtn.addEventListener('click', async () => {
+      const text = cmdInput.value;
+      let ok = false;
+      if (navigator.clipboard && window.isSecureContext) {
+        try { await navigator.clipboard.writeText(text); ok = true; } catch (e) { ok = await fallbackCopy(text); }
+      } else { ok = await fallbackCopy(text); }
+      if (ok) {
+        copyBtn.innerHTML = 'Copié ✅';
+      } else {
+        copyBtn.innerHTML = 'Échec de la copie';
+      }
+      setTimeout(() => copyBtn.innerHTML = originalBtnHtml, 2000);
+    });
+  </script>
+</body>
+</html>
