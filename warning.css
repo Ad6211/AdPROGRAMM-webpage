@@ -1,0 +1,10 @@
+.headerwarning {
+    background-color: yellow;
+    color: black;
+    padding: 3px;
+    text-align: center;
+    font-weight: bold;
+}
+.header {
+    top: 70px
+}
