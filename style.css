@@ -36,3 +36,14 @@ body {
 a + a { 
     margin-left: 20px;
 }
+.projects {
+    display:flex;
+    padding:10px;
+}
+#WebAD-2p0 h2 {
+    display: inline-block;
+    background: rgba(255,255,255,0.85);
+    color: #123047;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
