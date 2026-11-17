@@ -15,9 +15,10 @@
   <h1 style="padding-top: 80px; text-align: center;">WebAD 2.0</h1>
   <p>WebAD est un navigateur de bureau rapide et personnalisable, développé en C++17avec Qt 6 et le moteur Chromium via Qt WebEngine. Il est conçu pour réunir la navigation quotidienne et les outils utiles dans une interface compacte. </p>
   <hr>
-  <a href="https://github.com/Ad6211/WebAD-2.0/releases/download/2.1.0/WebAD-2.1.0-win64-setup.exe" download class="flex">
+  <a id="windows-download" href="https://github.com/Ad6211/WebAD-2.0/releases/latest" class="flex">
     <button style="display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; color : #564497; background-color: #080050; border-radius: 15px; text-align: center; justify-content: center; display: flex; align-items: center; font-size: 25px;"><img src="logo-windows.webp" alt="Logo Windows" style="width: 100px; height: auto; margin-right: 20px;">Télécharger WebAD pour<br> Windows</button>
   </a>
+  <p id="windows-download-status" role="status" aria-live="polite"></p>
   <div class="flex" style="text-align:center;">
     <a href="https://github.com/Ad6211/WebAD-2.0/releases/latest/download/WebAD-2.0-amd64-setup.deb" download class="flex"><button style="display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; color : #564497; background-color: #080050; border-radius: 15px; text-align: center; justify-content: center; display: flex; align-items: center; font-size: 25px;"><img src="logo-linux.png" alt="Logo Linux" style="width: 100px; height: auto; margin-right: 20px;">Télécharger WebAD pour<br> Debian / Ubuntu</button>
     </a>
@@ -34,5 +35,30 @@ et Chromium. Elle enrichit l’expérience avec une interface remaniée, davanta
 d’outils de navigation et des réglages plus complets ainsi qu'une réactivité beaucoup 
 plus avancée que dans la 1.0, tout en ne consommant que très peu de mémoire RAM comparé à la
 majorité des navigateurs courants.</p>
+  <script>
+    const windowsDownload = document.getElementById("windows-download");
+    const windowsDownloadStatus = document.getElementById("windows-download-status");
+
+    fetch("https://api.github.com/repos/Ad6211/WebAD-2.0/releases/latest")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`GitHub a répondu avec le statut ${response.status}.`);
+        }
+        return response.json();
+      })
+      .then(release => {
+        const installer = release.assets.find(asset =>
+          /win.*\.exe$/i.test(asset.name)
+        );
+        if (!installer) {
+          throw new Error("Aucun installateur Windows (.exe) n’a été trouvé dans la dernière release.");
+        }
+        windowsDownload.href = installer.browser_download_url;
+      })
+      .catch(error => {
+        windowsDownloadStatus.textContent =
+          `Le lien direct de téléchargement n’a pas pu être chargé : ${error.message} Vous pouvez choisir le fichier sur GitHub.`;
+      });
+  </script>
 </body>
 </html>
